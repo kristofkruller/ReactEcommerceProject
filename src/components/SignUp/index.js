@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { auth, handleUserProfile } from './../../firebase/utils';
 import './styles.scss';
 import FormInput from '../forms/FormInput';
 import Button from '../forms/Button';
@@ -8,7 +9,8 @@ const initialState = {
     displayName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    errors: []
 }
 
 class SignUp extends Component {
@@ -19,20 +21,42 @@ class SignUp extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
     }
-handleChange(e) {
-    const {name, value} = e.target;
-    this.setState({
-        [name]: value
-    });
-}
+    handleChange(e) {
+        const {name, value} = e.target;
+        this.setState({
+            [name]: value
+        });
+    }
+    handleFormSubmit = async event => {
+        event.preventDefault();
+        const { displayName, email, password, confirmPassword, errors } = this.state;
+        if (password !== confirmPassword) {
+            const err = ['Passwords do not match'];
+            this.setState({
+                errors: err
+            });
+            return;
+        }
+    }
     render () {
-        const {displayName, email, password, confirmPassword} = this.state
+        const {displayName, email, password, confirmPassword, errors} = this.state;
         return (
             <div className="signup">
                 <div className="wrap">
                     <h2>Signup</h2>
+                    {errors.lenght > 0 && (
+                        <ul>
+                            {errors.map((err, index) => {
+                                return (
+                                    <li key = {index}>
+                                        {err}
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    )}
                     <div className="formWrap">
-                        <form>
+                        <form onSubmit = {this.handleFormSubmit}>
                             <FormInput
                                 type = "text"
                                 name = "displayName"
@@ -55,7 +79,7 @@ handleChange(e) {
                                 onChange = {this.handleChange}
                             />
                             <FormInput
-                                type = "confirmPassword"
+                                type = "password"
                                 name = "confirmPassword"
                                 value = {confirmPassword}
                                 placeholder = "Confirm password"

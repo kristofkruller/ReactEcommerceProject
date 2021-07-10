@@ -33,6 +33,9 @@ class App extends Component {
           });
         });
       }
+      this.setState({
+        ...initialState
+      });
     });
   }
   componentWillUnmount() {
