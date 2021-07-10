@@ -7,10 +7,10 @@ const Directory = props => {
         <div className="directory">
             <div className="wrap">
                 <div className="item" style={{backgroundImage: `url(${ShopWomen})`}}>
-                    <a href = "#">Shop Womens</a>
+                    <a href = "#">Shop Women's</a>
                 </div>
                 <div className="item" style={{backgroundImage: `url(${ShopMen})`}}>
-                    <a href = "#">Shop Mens</a>
+                    <a href = "#">Shop Men's</a>
                 </div>
             </div>
         </div>

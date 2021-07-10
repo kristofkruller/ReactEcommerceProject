@@ -37,6 +37,13 @@ class SignUp extends Component {
             });
             return;
         }
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(email, password);
+            await handleUserProfile(user, { displayName });
+            this.setState({
+                ...initialState
+            });
+        } catch(err) {}
     }
     render () {
         const {displayName, email, password, confirmPassword, errors} = this.state;
@@ -48,10 +55,10 @@ class SignUp extends Component {
                         <ul>
                             {errors.map((err, index) => {
                                 return (
-                                    <li key = {index}>
+                                    <li key={index}>
                                         {err}
                                     </li>
-                                )
+                                );
                             })}
                         </ul>
                     )}
