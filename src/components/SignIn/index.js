@@ -40,30 +40,31 @@ class SignIn extends Component {
             <div className="signin">
                 <div className="wrap">
                     <h2>Login</h2>
-                </div>
-                <div className="formWrap">
-                    <form onSubmit={this.handleSubmit}>
-                        <FormInput
-                            type="email"
-                            name="email"
-                            value={email}
-                            placeholder="Email"
-                            handleChange={this.handleChange}
-                        />
-                        <FormInput
-                            type="password"
-                            name="password"
-                            value={password}
-                            placeholder="Password"
-                            handleChange={this.handleChange}
-                        />
-                        <Button type="submit">LogIn</Button>
-                        <div className="socialSignIn">
-                            <div className="row">
-                                <Button onClick={signInWithGoogle}>Sign in with Google</Button>
+
+                    <div className="formWrap">
+                        <form onSubmit={this.handleSubmit}>
+                            <FormInput
+                                type="email"
+                                name="email"
+                                value={email}
+                                placeholder="Email"
+                                handleChange={this.handleChange}
+                            />
+                            <FormInput
+                                type="password"
+                                name="password"
+                                value={password}
+                                placeholder="Password"
+                                handleChange={this.handleChange}
+                            />
+                            <Button type="submit">LogIn</Button>
+                            <div className="socialSignIn">
+                                <div className="row">
+                                    <Button onClick={signInWithGoogle}>Sign in with Google</Button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         );
