@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { signInWithGoogle, auth } from './../../firebase/utils';
 
+import AuthWrapper from '../AuthWrapper';
 import Button from '../forms/Button';
 import './../SignIn/styles.scss';
 import FormInput from '../forms/FormInput';
@@ -36,11 +37,11 @@ class SignIn extends Component {
     }
     render () {
         const { email, password } = this.state;
+        const configAuthWrapper = {
+            headline: 'LogIn'
+        }
         return (
-            <div className="signin">
-                <div className="wrap">
-                    <h2>Login</h2>
-
+                <AuthWrapper {...configAuthWrapper}>
                     <div className="formWrap">
                         <form onSubmit={this.handleSubmit}>
                             <FormInput
@@ -65,8 +66,7 @@ class SignIn extends Component {
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
+                </AuthWrapper>
         );
     }
 }
